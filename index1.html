@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Файловый менеджер</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        button { margin-top: 10px; }
+    </style>
+    <script>
+        async function sendFile(fileName) {
+        const response = await fetch(/send-file/$,{ fileName}, {  // Исправлено здесь
+                method: 'POST'
+            });
+            const result = await response.json();
+            alert(result.status === 'success' ? 'Файл отправлен!' : 'Ошибка при отправке файла.');
+        }
+    </script>
+</head>
+<body>
+    <h1>Файловый менеджер</h1>
+    <button onclick="sendFile('file1.pdf')">Отправить файл 1</button>
+    <button onclick="sendFile('file2.pdf')">Отправить файл 2</button>
+    <button onclick="sendFile('file3.pdf')">Отправить файл 3</button>
+</body>
+</html>
